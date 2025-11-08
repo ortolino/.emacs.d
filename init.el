@@ -13,26 +13,14 @@
 
 ;; PROGRAMMING: setup all main programming languages
 
-;; LSP MODE: util that is used for all programming languages
-(use-package lsp-mode
-  :ensure t)
-
 ;; Git: install magit for git management
 (use-package magit
   :ensure t)
 (require 'magit)
 
-;; Lean: Configuration for lean
-(use-package dash
-  :ensure t) ;; install dependencies
 
-(use-package lean4-mode
-  :commands lean4-mode
-  :vc (:url "https://github.com/leanprover-community/lean4-mode.git"
-       :rev
-       :last-release
-       :requires dash lsp-mode magit-section
-       ))
+
+
 
 
 ;; VARIABLES AND FACES: added automatically by Emacs
@@ -43,9 +31,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages '(dash: lean4-mode lsp-mode magit t2))
- '(package-vc-selected-packages
-   '((lean4-mode :url
-		 "https://github.com/leanprover-community/lean4-mode.git")))
+
  '(safe-local-variable-values
    '((eval add-hook 'before-save-hook #'whitespace-cleanup nil t))))
 (custom-set-faces
