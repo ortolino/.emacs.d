@@ -4,7 +4,7 @@
 ;; Add MELPA repository for additional packages
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-(package-refresh-contents)
+;;(package-refresh-contents)
 
 ;; INTERFACE: change the visual style and the management of the interface
 
@@ -31,11 +31,16 @@
 
 ;; PROGRAMMING: setup all main programming languages
 
+;; Set spaces instead of tabs:
+(setq-default indent-tabs-mode t)
+(setq-default tab-width 4) ; Assuming you want your tabs to be four spaces wide
+
 ;; Git: install magit for git management
 (use-package magit
   :ensure t)
 (require 'magit)
 
+;; HTML: set of rules for HTML
 
 ;; LSP: for the moment I will use the lighter eglot, will see if I need the beefier lsp-mode
 (use-package eglot
@@ -48,11 +53,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(consult dash: lean4-mode lsp-mode magit marginalia t2 vertico))
+ '(package-selected-packages nil)
  '(package-vc-selected-packages
    '((lean4-mode :url
-		 "https://github.com/leanprover-community/lean4-mode.git")))
+				 "https://github.com/leanprover-community/lean4-mode.git")))
  '(safe-local-variable-values
    '((eval add-hook 'before-save-hook #'whitespace-cleanup nil t))))
 (custom-set-faces
