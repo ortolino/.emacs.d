@@ -6,6 +6,7 @@
 (package-initialize)
 ;;(package-refresh-contents)
 
+
 ;; INTERFACE: change the visual style and the management of the interface
 
 ;; Setup visual theme
@@ -40,11 +41,32 @@
   :ensure t)
 (require 'magit)
 
-;; HTML: set of rules for HTML
+;; Rocq: install proof general & company
+(use-package proof-general
+  :ensure t)
+
+(use-package company-coq
+  :ensure t)
+
+;; Haskell: add haskell mode to code haskell code
+(setq exec-path (append exec-path '("~/.ghcup/bin"))) ;; Add local bin for emac functions
+
+(use-package haskell-mode
+  :ensure t)
 
 ;; LSP: for the moment I will use the lighter eglot, will see if I need the beefier lsp-mode
 (use-package eglot
-  :ensure t)
+  :ensure t
+  :config
+  (add-hook 'haskell-mode-hook 'eglot-ensure)
+  :config
+    (setq-default eglot-workspace-configuration
+                '(:haskell (:plugin (:stan (:globalOn :json-false))
+                            :formattingProvider "fourmolu")))
+  :custom
+  (eglot-autoshutdown t)
+  (eglot-confirm-server-initiated-edits nil)  
+  )
 
 ;; Variables AND FACES: added automatically by Emacs
 
@@ -53,7 +75,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages nil)
+ '(eglot-confirm-server-edits nil nil nil "Customized with use-package eglot")
+ '(package-selected-packages
+   '(company-coq consult flycheck haskell-mode lean4-mode magit
+				 marginalia proof-general vertico))
  '(package-vc-selected-packages
    '((lean4-mode :url
 				 "https://github.com/leanprover-community/lean4-mode.git")))
@@ -65,3 +90,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
