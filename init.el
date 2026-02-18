@@ -10,7 +10,7 @@
 ;; INTERFACE: change the visual style and the management of the interface
 
 ;; Setup visual theme
-(load-theme 'modus-vivendi)
+(load-theme 'modus-operandio)
 
 ;; Setup vertico for improved search interface
 (use-package vertico
