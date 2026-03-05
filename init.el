@@ -10,7 +10,7 @@
 ;; INTERFACE: change the visual style and the management of the interface
 
 ;; Setup visual theme
-(load-theme 'modus-operandio)
+(load-theme 'modus-operandi)
 
 ;; Setup vertico for improved search interface
 (use-package vertico
@@ -41,12 +41,7 @@
   :ensure t)
 (require 'magit)
 
-;; Rocq: install proof general & company
-(use-package proof-general
-  :ensure t)
 
-(use-package company-coq
-  :ensure t)
 
 ;; Haskell: add haskell mode to code haskell code
 (setq exec-path (append exec-path '("~/.ghcup/bin"))) ;; Add local bin for emac functions
@@ -76,9 +71,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(eglot-confirm-server-edits nil nil nil "Customized with use-package eglot")
- '(package-selected-packages
-   '(company-coq consult flycheck haskell-mode lean4-mode magit
-				 marginalia proof-general vertico))
+ '(package-selected-packages nil)
  '(package-vc-selected-packages
    '((lean4-mode :url
 				 "https://github.com/leanprover-community/lean4-mode.git")))
