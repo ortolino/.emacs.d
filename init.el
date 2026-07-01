@@ -9,6 +9,10 @@
 ;; Setup visual theme
 (load-theme 'modus-operandi)
 
+;; Setup font
+(set-frame-font "JetBrains Mono 11" nil t)
+
+
 ;; Setup vertico for improved search interface
 (use-package vertico
   :ensure t
@@ -85,6 +89,8 @@
 
 (use-package haskell-mode
   :ensure t)
+
+;; Typst: setup to work with typst documents
 
 ;; LSP: for the moment I will use the lighter eglot, will see if I need the beefier lsp-mode
 (use-package eglot
