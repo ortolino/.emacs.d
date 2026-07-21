@@ -10,7 +10,7 @@
 (load-theme 'modus-operandi)
 
 ;; Setup font
-(set-frame-font "JetBrains Mono 11" nil t)
+(set-frame-font "Terminus 11" nil t)
 
 
 ;; Setup vertico for improved search interface
