@@ -1,23 +1,25 @@
 ;; This is my emacs init file. I hope I can keep it as long as I can and configure it to my likings
 (require 'package)
 (require 'use-package)
+
 ;; Add MELPA repository for additional packages
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-;;(package-refresh-contents)
+
+
+
 ;; INTERFACE: change the visual style and the management of the interface
+
 ;; Setup visual theme
 (load-theme 'modus-operandi)
 
 ;; Setup font
-(set-frame-font "Terminus 11" nil t)
-
+(set-frame-font "FiraCode 11" nil t)
 
 ;; Setup vertico for improved search interface
 (use-package vertico
   :ensure t
   :init (vertico-mode))
-
 
 ;; Setup marginalia for additional informations in minibuffer
 (use-package marginalia
@@ -26,9 +28,6 @@
               ("M-A" . marginalia-cycle))
   :init (marginalia-mode))
 
-;; Setup consult for additional buffer actions
-(use-package consult
-  :ensure t)
 
 
 ;; PROGRAMMING: setup all main programming languages
@@ -40,19 +39,35 @@
 ;; Syntax Highlighting with flycheck
 (use-package flycheck
   :ensure t
+  :init (global-flycheck-mode)
   :config
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+  ;; Report Eglot's LSP diagnostics through Flycheck
+  (global-flycheck-eglot-mode 1))
 
 ;; Auto completion with company-mode
 (use-package company
   :ensure t
-  :hook (after-init-hook global-company-mode))
+  :hook (after-init-hook . global-company-mode))
 
 ;; Git: install magit for git management
 (use-package magit
   :ensure t)
-(require 'magit)
-	    
+
+;; Web development
+(use-package web-mode
+  :ensure t
+  :mode
+   (("\\.phtml\\'" . web-mode)
+   ("\\.php\\'" . web-mode)
+   ("\\.tpl\\'" . web-mode)
+   ("\\.[agj]sp\\'" . web-mode)
+   ("\\.as[cp]x\\'" . web-mode)
+   ("\\.erb\\'" . web-mode)
+   ("\\.mustache\\'" . web-mode)
+   ("\\.njk\\'" . web-mode)
+   ("\\.djhtml\\'" . web-mode)))
+
+
 ;; Markdown writing
 (use-package markdown-mode
   :ensure t
@@ -119,4 +134,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+)
