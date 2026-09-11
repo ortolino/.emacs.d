@@ -83,8 +83,7 @@
 
 (use-package company-coq
   :ensure t
-  :hook (coq-mode-hook . company-coq-mode))
-
+  :hook (coq-mode . company-coq-mode))
 
 ;; Lean development
 (setq exec-path (append exec-path '("~/.elan/env"))) ;; Add local bin for emac functions
